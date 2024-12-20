@@ -50,7 +50,7 @@ if (ENVIRONMENT_IS_NODE) {
 
 // --pre-jses are emitted after the Module integration code, so that they can
 // refer to Module (if they choose; they can also define Module)
-// include: /tmp/tmpf0ik7by3.js
+// include: /tmp/tmpgi281jop.js
 
   Module['expectedDataFileDownloads'] ??= 0;
   Module['expectedDataFileDownloads']++;
@@ -232,21 +232,21 @@ Module['FS_createPath']("/res", "mafia_love", true, true);
 
   })();
 
-// end include: /tmp/tmpf0ik7by3.js
-// include: /tmp/tmpkd6f45n_.js
+// end include: /tmp/tmpgi281jop.js
+// include: /tmp/tmp653ig_j_.js
 
     // All the pre-js content up to here must remain later on, we need to run
     // it.
     if (Module['$ww'] || (typeof ENVIRONMENT_IS_PTHREAD != 'undefined' && ENVIRONMENT_IS_PTHREAD)) Module['preRun'] = [];
     var necessaryPreJSTasks = Module['preRun'].slice();
-  // end include: /tmp/tmpkd6f45n_.js
-// include: /tmp/tmprx7y5fwx.js
+  // end include: /tmp/tmp653ig_j_.js
+// include: /tmp/tmp8o1np9nd.js
 
     if (!Module['preRun']) throw 'Module.preRun should exist because file support used it; did a pre-js delete it?';
     necessaryPreJSTasks.forEach((task) => {
       if (Module['preRun'].indexOf(task) < 0) throw 'All preRun tasks that exist before user pre-js code should remain after; did you replace Module or modify Module.preRun?';
     });
-  // end include: /tmp/tmprx7y5fwx.js
+  // end include: /tmp/tmp8o1np9nd.js
 
 
 // Sometimes an existing Module object exists with properties
@@ -1342,8 +1342,8 @@ function dbg(...args) {
 // === Body ===
 
 var ASM_CONSTS = {
-  431176: () => { let loading = document.getElementById("loading"); document.body.removeChild(loading); let window = document.createElement('canvas'); window.id = 'ANJIN_WINDOW'; window.style.backgroundColor = '#000'; document.body.appendChild(window); },  
- 431411: ($0) => { document.title = UTF8ToString($0); }
+  321920: () => { let loading = document.getElementById("loading"); document.body.removeChild(loading); let window = document.createElement('canvas'); window.id = 'ANJIN_WINDOW'; window.style.backgroundColor = '#000'; document.body.appendChild(window); },  
+ 322155: ($0) => { document.title = UTF8ToString($0); }
 };
 
 // end include: preamble.js
@@ -4791,28 +4791,10 @@ var ASM_CONSTS = {
 
   
   
-  function ___syscall_fstat64(fd, buf) {
-  if (ENVIRONMENT_IS_PTHREAD)
-    return proxyToMainThread(4, 0, 1, fd, buf);
-  
-  try {
-  
-      var stream = SYSCALLS.getStreamFromFD(fd);
-      return SYSCALLS.doStat(FS.stat, stream.path, buf);
-    } catch (e) {
-    if (typeof FS == 'undefined' || !(e.name === 'ErrnoError')) throw e;
-    return -e.errno;
-  }
-  
-  }
-  
-
-  
-  
   
   function ___syscall_ioctl(fd, op, varargs) {
   if (ENVIRONMENT_IS_PTHREAD)
-    return proxyToMainThread(5, 0, 1, fd, op, varargs);
+    return proxyToMainThread(4, 0, 1, fd, op, varargs);
   
   SYSCALLS.varargs = varargs;
   try {
@@ -4912,51 +4894,10 @@ var ASM_CONSTS = {
 
   
   
-  function ___syscall_lstat64(path, buf) {
-  if (ENVIRONMENT_IS_PTHREAD)
-    return proxyToMainThread(6, 0, 1, path, buf);
-  
-  try {
-  
-      path = SYSCALLS.getStr(path);
-      return SYSCALLS.doStat(FS.lstat, path, buf);
-    } catch (e) {
-    if (typeof FS == 'undefined' || !(e.name === 'ErrnoError')) throw e;
-    return -e.errno;
-  }
-  
-  }
-  
-
-  
-  
-  function ___syscall_newfstatat(dirfd, path, buf, flags) {
-  if (ENVIRONMENT_IS_PTHREAD)
-    return proxyToMainThread(7, 0, 1, dirfd, path, buf, flags);
-  
-  try {
-  
-      path = SYSCALLS.getStr(path);
-      var nofollow = flags & 256;
-      var allowEmpty = flags & 4096;
-      flags = flags & (~6400);
-      assert(!flags, `unknown flags in __syscall_newfstatat: ${flags}`);
-      path = SYSCALLS.calculateAt(dirfd, path, allowEmpty);
-      return SYSCALLS.doStat(nofollow ? FS.lstat : FS.stat, path, buf);
-    } catch (e) {
-    if (typeof FS == 'undefined' || !(e.name === 'ErrnoError')) throw e;
-    return -e.errno;
-  }
-  
-  }
-  
-
-  
-  
   
   function ___syscall_openat(dirfd, path, flags, varargs) {
   if (ENVIRONMENT_IS_PTHREAD)
-    return proxyToMainThread(8, 0, 1, dirfd, path, flags, varargs);
+    return proxyToMainThread(5, 0, 1, dirfd, path, flags, varargs);
   
   SYSCALLS.varargs = varargs;
   try {
@@ -4965,24 +4906,6 @@ var ASM_CONSTS = {
       path = SYSCALLS.calculateAt(dirfd, path);
       var mode = varargs ? syscallGetVarargI() : 0;
       return FS.open(path, flags, mode).fd;
-    } catch (e) {
-    if (typeof FS == 'undefined' || !(e.name === 'ErrnoError')) throw e;
-    return -e.errno;
-  }
-  
-  }
-  
-
-  
-  
-  function ___syscall_stat64(path, buf) {
-  if (ENVIRONMENT_IS_PTHREAD)
-    return proxyToMainThread(9, 0, 1, path, buf);
-  
-  try {
-  
-      path = SYSCALLS.getStr(path);
-      return SYSCALLS.doStat(FS.stat, path, buf);
     } catch (e) {
     if (typeof FS == 'undefined' || !(e.name === 'ErrnoError')) throw e;
     return -e.errno;
@@ -5823,67 +5746,6 @@ var ASM_CONSTS = {
         PThread.pthreads[thread].ref();
       }
     };
-
-  var __emscripten_throw_longjmp = () => {
-      throw Infinity;
-    };
-
-  
-  
-  
-  
-  
-  
-  
-  function __mmap_js(len,prot,flags,fd,offset_low, offset_high,allocated,addr) {
-  if (ENVIRONMENT_IS_PTHREAD)
-    return proxyToMainThread(10, 0, 1, len,prot,flags,fd,offset_low, offset_high,allocated,addr);
-  
-    var offset = convertI32PairToI53Checked(offset_low, offset_high);
-  
-    
-  try {
-  
-      if (isNaN(offset)) return 61;
-      var stream = SYSCALLS.getStreamFromFD(fd);
-      var res = FS.mmap(stream, len, offset, prot, flags);
-      var ptr = res.ptr;
-      HEAP32[((allocated)>>2)] = res.allocated;
-      HEAPU32[((addr)>>2)] = ptr;
-      return 0;
-    } catch (e) {
-    if (typeof FS == 'undefined' || !(e.name === 'ErrnoError')) throw e;
-    return -e.errno;
-  }
-  ;
-  
-  }
-  
-
-  
-  
-  
-  function __munmap_js(addr,len,prot,flags,fd,offset_low, offset_high) {
-  if (ENVIRONMENT_IS_PTHREAD)
-    return proxyToMainThread(11, 0, 1, addr,len,prot,flags,fd,offset_low, offset_high);
-  
-    var offset = convertI32PairToI53Checked(offset_low, offset_high);
-  
-    
-  try {
-  
-      var stream = SYSCALLS.getStreamFromFD(fd);
-      if (prot & 2) {
-        SYSCALLS.doMsync(addr, stream, len, flags, offset);
-      }
-    } catch (e) {
-    if (typeof FS == 'undefined' || !(e.name === 'ErrnoError')) throw e;
-    return -e.errno;
-  }
-  ;
-  
-  }
-  
 
   
   
@@ -7420,7 +7282,7 @@ var ASM_CONSTS = {
   
   function _alBufferData(bufferId, format, pData, size, freq) {
   if (ENVIRONMENT_IS_PTHREAD)
-    return proxyToMainThread(12, 0, 1, bufferId, format, pData, size, freq);
+    return proxyToMainThread(6, 0, 1, bufferId, format, pData, size, freq);
   
       if (!AL.currentCtx) {
         return;
@@ -7538,7 +7400,7 @@ var ASM_CONSTS = {
   
   function _alDeleteBuffers(count, pBufferIds) {
   if (ENVIRONMENT_IS_PTHREAD)
-    return proxyToMainThread(13, 0, 1, count, pBufferIds);
+    return proxyToMainThread(7, 0, 1, count, pBufferIds);
   
       if (!AL.currentCtx) {
         return;
@@ -7582,7 +7444,7 @@ var ASM_CONSTS = {
   
   function _alSourcei(sourceId, param, value) {
   if (ENVIRONMENT_IS_PTHREAD)
-    return proxyToMainThread(15, 0, 1, sourceId, param, value);
+    return proxyToMainThread(9, 0, 1, sourceId, param, value);
   
       switch (param) {
       case 0x202 /* AL_SOURCE_RELATIVE */:
@@ -7614,7 +7476,7 @@ var ASM_CONSTS = {
   
   function _alDeleteSources(count, pSourceIds) {
   if (ENVIRONMENT_IS_PTHREAD)
-    return proxyToMainThread(14, 0, 1, count, pSourceIds);
+    return proxyToMainThread(8, 0, 1, count, pSourceIds);
   
       if (!AL.currentCtx) {
         return;
@@ -7643,7 +7505,7 @@ var ASM_CONSTS = {
   
   function _alGenBuffers(count, pBufferIds) {
   if (ENVIRONMENT_IS_PTHREAD)
-    return proxyToMainThread(16, 0, 1, count, pBufferIds);
+    return proxyToMainThread(10, 0, 1, count, pBufferIds);
   
       if (!AL.currentCtx) {
         return;
@@ -7672,7 +7534,7 @@ var ASM_CONSTS = {
   
   function _alGenSources(count, pSourceIds) {
   if (ENVIRONMENT_IS_PTHREAD)
-    return proxyToMainThread(17, 0, 1, count, pSourceIds);
+    return proxyToMainThread(11, 0, 1, count, pSourceIds);
   
       if (!AL.currentCtx) {
         return;
@@ -7725,7 +7587,7 @@ var ASM_CONSTS = {
   
   function _alGetSourcei(sourceId, param, pValue) {
   if (ENVIRONMENT_IS_PTHREAD)
-    return proxyToMainThread(18, 0, 1, sourceId, param, pValue);
+    return proxyToMainThread(12, 0, 1, sourceId, param, pValue);
   
       var val = AL.getSourceParam('alGetSourcei', sourceId, param);
       if (val === null) {
@@ -7770,7 +7632,7 @@ var ASM_CONSTS = {
   
   function _alSource3f(sourceId, param, value0, value1, value2) {
   if (ENVIRONMENT_IS_PTHREAD)
-    return proxyToMainThread(19, 0, 1, sourceId, param, value0, value1, value2);
+    return proxyToMainThread(13, 0, 1, sourceId, param, value0, value1, value2);
   
       switch (param) {
       case 4100:
@@ -7793,7 +7655,7 @@ var ASM_CONSTS = {
   
   function _alSourcePlay(sourceId) {
   if (ENVIRONMENT_IS_PTHREAD)
-    return proxyToMainThread(20, 0, 1, sourceId);
+    return proxyToMainThread(14, 0, 1, sourceId);
   
       if (!AL.currentCtx) {
         return;
@@ -7812,7 +7674,7 @@ var ASM_CONSTS = {
   
   function _alSourceQueueBuffers(sourceId, count, pBufferIds) {
   if (ENVIRONMENT_IS_PTHREAD)
-    return proxyToMainThread(21, 0, 1, sourceId, count, pBufferIds);
+    return proxyToMainThread(15, 0, 1, sourceId, count, pBufferIds);
   
       if (!AL.currentCtx) {
         return;
@@ -7886,7 +7748,7 @@ var ASM_CONSTS = {
   
   function _alSourceStop(sourceId) {
   if (ENVIRONMENT_IS_PTHREAD)
-    return proxyToMainThread(22, 0, 1, sourceId);
+    return proxyToMainThread(16, 0, 1, sourceId);
   
       if (!AL.currentCtx) {
         return;
@@ -7905,7 +7767,7 @@ var ASM_CONSTS = {
   
   function _alSourceUnqueueBuffers(sourceId, count, pBufferIds) {
   if (ENVIRONMENT_IS_PTHREAD)
-    return proxyToMainThread(23, 0, 1, sourceId, count, pBufferIds);
+    return proxyToMainThread(17, 0, 1, sourceId, count, pBufferIds);
   
       if (!AL.currentCtx) {
         return;
@@ -7947,7 +7809,7 @@ var ASM_CONSTS = {
   
   function _alSourcef(sourceId, param, value) {
   if (ENVIRONMENT_IS_PTHREAD)
-    return proxyToMainThread(24, 0, 1, sourceId, param, value);
+    return proxyToMainThread(18, 0, 1, sourceId, param, value);
   
       switch (param) {
       case 0x1001 /* AL_CONE_INNER_ANGLE */:
@@ -7979,7 +7841,7 @@ var ASM_CONSTS = {
   
   function _alcCloseDevice(deviceId) {
   if (ENVIRONMENT_IS_PTHREAD)
-    return proxyToMainThread(25, 0, 1, deviceId);
+    return proxyToMainThread(19, 0, 1, deviceId);
   
       if (!(deviceId in AL.deviceRefCounts) || AL.deviceRefCounts[deviceId] > 0) {
         return 0;
@@ -8014,7 +7876,7 @@ var ASM_CONSTS = {
   
   function _alcCreateContext(deviceId, pAttrList) {
   if (ENVIRONMENT_IS_PTHREAD)
-    return proxyToMainThread(26, 0, 1, deviceId, pAttrList);
+    return proxyToMainThread(20, 0, 1, deviceId, pAttrList);
   
       if (!(deviceId in AL.deviceRefCounts)) {
         AL.alcErr = 0xA001; /* ALC_INVALID_DEVICE */
@@ -8159,7 +8021,7 @@ var ASM_CONSTS = {
   
   function _alcDestroyContext(contextId) {
   if (ENVIRONMENT_IS_PTHREAD)
-    return proxyToMainThread(27, 0, 1, contextId);
+    return proxyToMainThread(21, 0, 1, contextId);
   
       var ctx = AL.contexts[contextId];
       if (AL.currentCtx === ctx) {
@@ -8182,7 +8044,7 @@ var ASM_CONSTS = {
   
   function _alcMakeContextCurrent(contextId) {
   if (ENVIRONMENT_IS_PTHREAD)
-    return proxyToMainThread(28, 0, 1, contextId);
+    return proxyToMainThread(22, 0, 1, contextId);
   
       if (contextId === 0) {
         AL.currentCtx = null;
@@ -8199,7 +8061,7 @@ var ASM_CONSTS = {
   
   function _alcOpenDevice(pDeviceName) {
   if (ENVIRONMENT_IS_PTHREAD)
-    return proxyToMainThread(29, 0, 1, pDeviceName);
+    return proxyToMainThread(23, 0, 1, pDeviceName);
   
       if (pDeviceName) {
         var name = UTF8ToString(pDeviceName);
@@ -8782,17 +8644,6 @@ var ASM_CONSTS = {
   var _emscripten_glLinkProgram = _glLinkProgram;
 
   /** @suppress {duplicate } */
-  var _glPixelStorei = (pname, param) => {
-      if (pname == 3317) {
-        GL.unpackAlignment = param;
-      } else if (pname == 3314) {
-        GL.unpackRowLength = param;
-      }
-      GLctx.pixelStorei(pname, param);
-    };
-  var _emscripten_glPixelStorei = _glPixelStorei;
-
-  /** @suppress {duplicate } */
   var _glShaderSource = (shader, count, string, length) => {
       var source = GL.getSource(shader, count, string, length);
   
@@ -9203,7 +9054,7 @@ var ASM_CONSTS = {
   
   function setCanvasElementSizeMainThread(target, width, height) {
   if (ENVIRONMENT_IS_PTHREAD)
-    return proxyToMainThread(30, 0, 1, target, width, height);
+    return proxyToMainThread(24, 0, 1, target, width, height);
   return setCanvasElementSizeCallingThread(target, width, height)
   }
   
@@ -9264,7 +9115,7 @@ var ASM_CONSTS = {
   
   function _emscripten_set_keydown_callback_on_thread(target, userData, useCapture, callbackfunc, targetThread) {
   if (ENVIRONMENT_IS_PTHREAD)
-    return proxyToMainThread(31, 0, 1, target, userData, useCapture, callbackfunc, targetThread);
+    return proxyToMainThread(25, 0, 1, target, userData, useCapture, callbackfunc, targetThread);
   return registerKeyEventCallback(target, userData, useCapture, callbackfunc, 2, "keydown", targetThread)
   }
   
@@ -9273,7 +9124,7 @@ var ASM_CONSTS = {
   
   function _emscripten_set_keyup_callback_on_thread(target, userData, useCapture, callbackfunc, targetThread) {
   if (ENVIRONMENT_IS_PTHREAD)
-    return proxyToMainThread(32, 0, 1, target, userData, useCapture, callbackfunc, targetThread);
+    return proxyToMainThread(26, 0, 1, target, userData, useCapture, callbackfunc, targetThread);
   return registerKeyEventCallback(target, userData, useCapture, callbackfunc, 3, "keyup", targetThread)
   }
   
@@ -9349,7 +9200,7 @@ var ASM_CONSTS = {
   
   function _emscripten_set_mousedown_callback_on_thread(target, userData, useCapture, callbackfunc, targetThread) {
   if (ENVIRONMENT_IS_PTHREAD)
-    return proxyToMainThread(33, 0, 1, target, userData, useCapture, callbackfunc, targetThread);
+    return proxyToMainThread(27, 0, 1, target, userData, useCapture, callbackfunc, targetThread);
   return registerMouseEventCallback(target, userData, useCapture, callbackfunc, 5, "mousedown", targetThread)
   }
   
@@ -9358,7 +9209,7 @@ var ASM_CONSTS = {
   
   function _emscripten_set_mousemove_callback_on_thread(target, userData, useCapture, callbackfunc, targetThread) {
   if (ENVIRONMENT_IS_PTHREAD)
-    return proxyToMainThread(34, 0, 1, target, userData, useCapture, callbackfunc, targetThread);
+    return proxyToMainThread(28, 0, 1, target, userData, useCapture, callbackfunc, targetThread);
   return registerMouseEventCallback(target, userData, useCapture, callbackfunc, 8, "mousemove", targetThread)
   }
   
@@ -9367,7 +9218,7 @@ var ASM_CONSTS = {
   
   function _emscripten_set_mouseup_callback_on_thread(target, userData, useCapture, callbackfunc, targetThread) {
   if (ENVIRONMENT_IS_PTHREAD)
-    return proxyToMainThread(35, 0, 1, target, userData, useCapture, callbackfunc, targetThread);
+    return proxyToMainThread(29, 0, 1, target, userData, useCapture, callbackfunc, targetThread);
   return registerMouseEventCallback(target, userData, useCapture, callbackfunc, 6, "mouseup", targetThread)
   }
   
@@ -9382,7 +9233,7 @@ var ASM_CONSTS = {
   
   function _emscripten_webgl_destroy_context(contextHandle) {
   if (ENVIRONMENT_IS_PTHREAD)
-    return proxyToMainThread(36, 0, 1, contextHandle);
+    return proxyToMainThread(30, 0, 1, contextHandle);
   
       if (GL.currentContext == contextHandle) GL.currentContext = 0;
       GL.deleteContext(contextHandle);
@@ -9413,7 +9264,7 @@ var ASM_CONSTS = {
   
   function _emscripten_webgl_create_context_proxied(target, attributes) {
   if (ENVIRONMENT_IS_PTHREAD)
-    return proxyToMainThread(37, 0, 1, target, attributes);
+    return proxyToMainThread(31, 0, 1, target, attributes);
   return _emscripten_webgl_do_create_context(target, attributes)
   }
   
@@ -9481,89 +9332,12 @@ var ASM_CONSTS = {
       return success ? 0 : -5;
     };
 
-  var ENV = {
-  };
-  
-  var getExecutableName = () => thisProgram || './this.program';
-  var getEnvStrings = () => {
-      if (!getEnvStrings.strings) {
-        // Default values.
-        // Browser language detection #8751
-        var lang = ((typeof navigator == 'object' && navigator.languages && navigator.languages[0]) || 'C').replace('-', '_') + '.UTF-8';
-        var env = {
-          'USER': 'web_user',
-          'LOGNAME': 'web_user',
-          'PATH': '/',
-          'PWD': '/',
-          'HOME': '/home/web_user',
-          'LANG': lang,
-          '_': getExecutableName()
-        };
-        // Apply the user-provided values, if any.
-        for (var x in ENV) {
-          // x is a key in ENV; if ENV[x] is undefined, that means it was
-          // explicitly set to be so. We allow user code to do that to
-          // force variables with default values to remain unset.
-          if (ENV[x] === undefined) delete env[x];
-          else env[x] = ENV[x];
-        }
-        var strings = [];
-        for (var x in env) {
-          strings.push(`${x}=${env[x]}`);
-        }
-        getEnvStrings.strings = strings;
-      }
-      return getEnvStrings.strings;
-    };
-  
-  var stringToAscii = (str, buffer) => {
-      for (var i = 0; i < str.length; ++i) {
-        assert(str.charCodeAt(i) === (str.charCodeAt(i) & 0xff));
-        HEAP8[buffer++] = str.charCodeAt(i);
-      }
-      // Null-terminate the string
-      HEAP8[buffer] = 0;
-    };
-  
-  var _environ_get = 
-  function(__environ, environ_buf) {
-  if (ENVIRONMENT_IS_PTHREAD)
-    return proxyToMainThread(38, 0, 1, __environ, environ_buf);
-  
-      var bufSize = 0;
-      getEnvStrings().forEach((string, i) => {
-        var ptr = environ_buf + bufSize;
-        HEAPU32[(((__environ)+(i*4))>>2)] = ptr;
-        stringToAscii(string, ptr);
-        bufSize += string.length + 1;
-      });
-      return 0;
-    
-  }
-  ;
-
-  
-  var _environ_sizes_get = 
-  function(penviron_count, penviron_buf_size) {
-  if (ENVIRONMENT_IS_PTHREAD)
-    return proxyToMainThread(39, 0, 1, penviron_count, penviron_buf_size);
-  
-      var strings = getEnvStrings();
-      HEAPU32[((penviron_count)>>2)] = strings.length;
-      var bufSize = 0;
-      strings.forEach((string) => bufSize += string.length + 1);
-      HEAPU32[((penviron_buf_size)>>2)] = bufSize;
-      return 0;
-    
-  }
-  ;
-
 
   
   
   function _fd_close(fd) {
   if (ENVIRONMENT_IS_PTHREAD)
-    return proxyToMainThread(40, 0, 1, fd);
+    return proxyToMainThread(32, 0, 1, fd);
   
   try {
   
@@ -9600,7 +9374,7 @@ var ASM_CONSTS = {
   
   function _fd_read(fd, iov, iovcnt, pnum) {
   if (ENVIRONMENT_IS_PTHREAD)
-    return proxyToMainThread(41, 0, 1, fd, iov, iovcnt, pnum);
+    return proxyToMainThread(33, 0, 1, fd, iov, iovcnt, pnum);
   
   try {
   
@@ -9621,7 +9395,7 @@ var ASM_CONSTS = {
   
   function _fd_seek(fd,offset_low, offset_high,whence,newOffset) {
   if (ENVIRONMENT_IS_PTHREAD)
-    return proxyToMainThread(42, 0, 1, fd,offset_low, offset_high,whence,newOffset);
+    return proxyToMainThread(34, 0, 1, fd,offset_low, offset_high,whence,newOffset);
   
     var offset = convertI32PairToI53Checked(offset_low, offset_high);
   
@@ -9668,7 +9442,7 @@ var ASM_CONSTS = {
   
   function _fd_write(fd, iov, iovcnt, pnum) {
   if (ENVIRONMENT_IS_PTHREAD)
-    return proxyToMainThread(43, 0, 1, fd, iov, iovcnt, pnum);
+    return proxyToMainThread(35, 0, 1, fd, iov, iovcnt, pnum);
   
   try {
   
@@ -9694,7 +9468,6 @@ var ASM_CONSTS = {
       stringToUTF8(str, ret, size);
       return ret;
     };
-
 
 
   var FS_createPath = FS.createPath;
@@ -9743,14 +9516,8 @@ var proxiedFunctionTable = [
   exitOnMainThread,
   pthreadCreateProxied,
   ___syscall_fcntl64,
-  ___syscall_fstat64,
   ___syscall_ioctl,
-  ___syscall_lstat64,
-  ___syscall_newfstatat,
   ___syscall_openat,
-  ___syscall_stat64,
-  __mmap_js,
-  __munmap_js,
   _alBufferData,
   _alDeleteBuffers,
   _alDeleteSources,
@@ -9777,8 +9544,6 @@ var proxiedFunctionTable = [
   _emscripten_set_mouseup_callback_on_thread,
   _emscripten_webgl_destroy_context,
   _emscripten_webgl_create_context_proxied,
-  _environ_get,
-  _environ_sizes_get,
   _fd_close,
   _fd_read,
   _fd_seek,
@@ -9798,17 +9563,9 @@ function assignWasmImports() {
     /** @export */
     __syscall_fcntl64: ___syscall_fcntl64,
     /** @export */
-    __syscall_fstat64: ___syscall_fstat64,
-    /** @export */
     __syscall_ioctl: ___syscall_ioctl,
     /** @export */
-    __syscall_lstat64: ___syscall_lstat64,
-    /** @export */
-    __syscall_newfstatat: ___syscall_newfstatat,
-    /** @export */
     __syscall_openat: ___syscall_openat,
-    /** @export */
-    __syscall_stat64: ___syscall_stat64,
     /** @export */
     _emscripten_init_main_thread_js: __emscripten_init_main_thread_js,
     /** @export */
@@ -9823,12 +9580,6 @@ function assignWasmImports() {
     _emscripten_thread_mailbox_await: __emscripten_thread_mailbox_await,
     /** @export */
     _emscripten_thread_set_strongref: __emscripten_thread_set_strongref,
-    /** @export */
-    _emscripten_throw_longjmp: __emscripten_throw_longjmp,
-    /** @export */
-    _mmap_js: __mmap_js,
-    /** @export */
-    _munmap_js: __munmap_js,
     /** @export */
     alBufferData: _alBufferData,
     /** @export */
@@ -9934,8 +9685,6 @@ function assignWasmImports() {
     /** @export */
     emscripten_glLinkProgram: _emscripten_glLinkProgram,
     /** @export */
-    emscripten_glPixelStorei: _emscripten_glPixelStorei,
-    /** @export */
     emscripten_glShaderSource: _emscripten_glShaderSource,
     /** @export */
     emscripten_glTexImage2D: _emscripten_glTexImage2D,
@@ -9978,10 +9727,6 @@ function assignWasmImports() {
     /** @export */
     emscripten_webgl_make_context_current_calling_thread: _emscripten_webgl_make_context_current_calling_thread,
     /** @export */
-    environ_get: _environ_get,
-    /** @export */
-    environ_sizes_get: _environ_sizes_get,
-    /** @export */
     exit: _exit,
     /** @export */
     fd_close: _fd_close,
@@ -9991,16 +9736,6 @@ function assignWasmImports() {
     fd_seek: _fd_seek,
     /** @export */
     fd_write: _fd_write,
-    /** @export */
-    invoke_iii,
-    /** @export */
-    invoke_iiii,
-    /** @export */
-    invoke_iiiii,
-    /** @export */
-    invoke_v,
-    /** @export */
-    invoke_viiii,
     /** @export */
     memory: wasmMemory
   };
@@ -10035,61 +9770,6 @@ var __emscripten_stack_alloc = (a0) => (__emscripten_stack_alloc = wasmExports['
 var _emscripten_stack_get_current = () => (_emscripten_stack_get_current = wasmExports['emscripten_stack_get_current'])();
 var dynCall_jiji = Module['dynCall_jiji'] = createExportWrapper('dynCall_jiji', 5);
 
-function invoke_viiii(index,a1,a2,a3,a4) {
-  var sp = stackSave();
-  try {
-    getWasmTableEntry(index)(a1,a2,a3,a4);
-  } catch(e) {
-    stackRestore(sp);
-    if (e !== e+0) throw e;
-    _setThrew(1, 0);
-  }
-}
-
-function invoke_iii(index,a1,a2) {
-  var sp = stackSave();
-  try {
-    return getWasmTableEntry(index)(a1,a2);
-  } catch(e) {
-    stackRestore(sp);
-    if (e !== e+0) throw e;
-    _setThrew(1, 0);
-  }
-}
-
-function invoke_iiiii(index,a1,a2,a3,a4) {
-  var sp = stackSave();
-  try {
-    return getWasmTableEntry(index)(a1,a2,a3,a4);
-  } catch(e) {
-    stackRestore(sp);
-    if (e !== e+0) throw e;
-    _setThrew(1, 0);
-  }
-}
-
-function invoke_v(index) {
-  var sp = stackSave();
-  try {
-    getWasmTableEntry(index)();
-  } catch(e) {
-    stackRestore(sp);
-    if (e !== e+0) throw e;
-    _setThrew(1, 0);
-  }
-}
-
-function invoke_iiii(index,a1,a2,a3) {
-  var sp = stackSave();
-  try {
-    return getWasmTableEntry(index)(a1,a2,a3);
-  } catch(e) {
-    stackRestore(sp);
-    if (e !== e+0) throw e;
-    _setThrew(1, 0);
-  }
-}
-
 
 // include: postamble.js
 // === Auto-generated postamble setup entry stuff ===
@@ -10123,6 +9803,7 @@ var missingLibrarySymbols = [
   'writeSockaddr',
   'emscriptenLog',
   'runMainThreadEmAsm',
+  'getExecutableName',
   'dynCallLegacy',
   'getDynCaller',
   'dynCall',
@@ -10152,6 +9833,7 @@ var missingLibrarySymbols = [
   'formatString',
   'intArrayToString',
   'AsciiToString',
+  'stringToAscii',
   'UTF16ToString',
   'stringToUTF16',
   'lengthBytesUTF16',
@@ -10200,6 +9882,7 @@ var missingLibrarySymbols = [
   'jsStackTrace',
   'getCallstack',
   'convertPCtoSourceLocation',
+  'getEnvStrings',
   'wasiRightsToMuslOFlags',
   'wasiOFlagsToMuslOFlags',
   'safeSetTimeout',
@@ -10282,7 +9965,6 @@ var unexportedSymbols = [
   'runEmAsmFunction',
   'jstoi_q',
   'jstoi_s',
-  'getExecutableName',
   'listenOnce',
   'autoResumeAudioContext',
   'handleException',
@@ -10309,7 +9991,6 @@ var unexportedSymbols = [
   'stringToUTF8',
   'lengthBytesUTF8',
   'intArrayFromString',
-  'stringToAscii',
   'UTF16Decoder',
   'stringToUTF8OnStack',
   'JSEvents',
@@ -10327,7 +10008,6 @@ var unexportedSymbols = [
   'setCanvasElementSizeMainThread',
   'UNWIND_CACHE',
   'ExitStatus',
-  'getEnvStrings',
   'checkWasiClock',
   'doReadv',
   'doWritev',
